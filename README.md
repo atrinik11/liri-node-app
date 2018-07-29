@@ -8,8 +8,9 @@ Descripttion:
 	The data collected from the server will also be stored in a file called log.txt.
 
 Technologies Used: 
-	Language: JavaScript.
 
+	Language: JavaScript.
+	
 	Environment: Node JS.
 
 	API: Twitter API and Spotify API.
