@@ -81,7 +81,7 @@ Method:
 
 	Command in command line:
 	Twitter: node <"js file name"> my-tweets <"username"> 
-	Spotify: node <"js file name"> sporify-this-song <"song name">
+	Spotify: node <"js file name"> spotify-this-song <"song name">
 	OMDB:    node <"js file name"> movie-this <"movie name">
 	do:      node <"js file name"> do-what-it-says			
 

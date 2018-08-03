@@ -42,26 +42,21 @@ function tweetsDisplay() {
 
 	if (!twitterName) {
 		twitterName = "cnn";
+
+		tweetSubDisplay();
+
+	} else {
+
+		tweetSubDisplay();
+
+	}
+
+	
+	function tweetSubDisplay() {
 		var params = {screen_name : twitterName};
 		client.get('statuses/user_timeline/', params, function(error, tweets, response) {
-			if (!error) {
-				for (var i = 0; i < 20; i++) {
-					var getTweets = "\n" + "------------------------" + i +"--------------------------------------------------" + "\n" +
-					"@" + tweets[i].user.screen_name + ":" + tweets[i] + "\n" + 
-					tweets[i].text + tweets[i].created_at + "\n" +
-					"-------------------------------------------------------------------------------------------" + "\n";
-					console.log(getTweets);
-				}
-			} else {
-				console.log("Twitter error: " + error);
-			}
-		});	
-	} else {
-			var params = {screen_name : twitterName};
-			client.get('statuses/user_timeline/', params, function(error, tweets, response) {
 			if (error) {
-				console.log("Twitter error: " + error);
-				
+				console.log("Twitter error: " + error);	
 			} else {
 				for (var i = 0; i < 20; i++) {
 					var num = i +1;
@@ -84,28 +79,16 @@ function spotifyDisplay() {
 
 	if (!spotifyName) {
 		spotifyName = "i want it that way";
-		spotify.search({ type: "track", query: spotifyName}, function(error, data) {
-			if (error) {
-				console.log("Spotify error: " + error);
-			} else {
-				var track = data.tracks.items[0].name;
-				var artist = data.tracks.items[0].artists[0].name;
-				var album = data.tracks.items[0].album.name;
-				var url = data.tracks.items[0].preview_url;
-				var getSpotifys = 
-				"\n" + "----------------------------------------------------" + "\n" +
-				"Artists name: " + artist + "\n" +
-				"Album name: " + album + "\n" +
-				"Song name: " + track + "\n" +
-				"Preview Url: " + url + "\n" +
-				"----------------------------------------------------" + "\n";
-				console.log(getSpotifys);
-				logDisplay(getSpotifys);
-			}
-		});
+		//Calling the spotifySubDisplay function..............
+		spotifySubDisplay();
 
 	} else {
-		
+
+		//Calling the spotifySubDisplay function.......	
+		spotifySubDisplay();
+	}
+
+	function spotifySubDisplay() {
 		spotify.search({ type: "track", query: spotifyName}, function(error, data) {
 			if (error) {
 				console.log("Spotify error: " + error);
@@ -135,30 +118,16 @@ function movieDisplay() {
 
 	if (!movie) {
 		movie = "Mr. Nobody";
-		request("http://www.omdbapi.com/?t="+ movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
-			if (!error && response.statusCode === 200) {
-				console.log("Title: Mr. Nobody");
-				var movieResult = 
-				"\n" + "--------------------------------------------------------------------" + "\n"+
-				"  Title: " + JSON.parse(body).Title + "\n" +
-				"  Year: " + JSON.parse(body).Year + "\n" +
-				"  Imdb Rating: " + JSON.parse(body).imdbRating + "\n" +
-				"  Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value+ "\n" +
-				"  Country: " + JSON.parse(body).Country + "\n" +
-				"  Language: " + JSON.parse(body).Language + "\n" +
-				"  Plot: " + JSON.parse(body).Plot + "\n" +
-				"  Actors: " + JSON.parse(body).Actors + "\n" +
-				"--------------------------------------------------------------------" + "\n";
-				console.log(movieResult);	
-				logDisplay(movieResult);
-
-			}
-			else {
-				console.log("error: ", error);
-			}
-		});
+		//Calling the movieSubDisplay function............
+		movieSubDisplay();
 	}
 	else {
+		
+		//Calling the movieSubDisplay function......
+		movieSubDisplay();
+	}
+
+	function movieSubDisplay() {
 		request("http://www.omdbapi.com/?t="+ movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
 			if (!error && response.statusCode === 200) {
 				var getMovie = JSON.parse(body);
@@ -181,7 +150,7 @@ function movieDisplay() {
 			}
 		});
 	}
-};
+}
 
 
 //function for do-what -it-says to access  the random.txt file............
